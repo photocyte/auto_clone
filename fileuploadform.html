@@ -1,0 +1,46 @@
+<html>
+<head> 
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/> 
+<title>Gibson FASTA auto cloning</title>
+</head>
+<body>
+<p><h1>Gibson FASTA auto cloning</h1></p>
+<form enctype="multipart/form-data" action="/upload" method="post">
+Upload FASTA (nucleotide CDS) File: <input type="file" name="filearg" />
+<br />
+or
+<br />
+Copy paste raw nucleotide sequence (only 1), or multiple nucleotide sequences in FASTA format:
+<br />
+<TEXTAREA name="fasta_text" 
+            rows="20" cols="50"
+            tabindex="40">
+</TEXTAREA>
+<br />
+Sequence ID:<input type="text" name="record_id" value="no_id">
+<br>
+Sequence name:<input type="text" name="record_name" value="no_name">
+<br>
+Sequence description:<input type="text" name="record_description" value="no_description">
+<br />
+<br />
+Primer prefix:<input type="text" name="primer_prefix" value="TRF_x">
+<br>
+Primer start index:<input type="text" name="primer_index" value="0164">
+
+<br>
+<br>
+Destination plasmid:
+<br/>
+  <input type="radio" name="plasmid_name" value="pHis8_4" checked> pHis8_4<br>
+  <input type="radio" name="plasmid_name" value="p4XX"> p4XX yeast vectors<br>
+  <input type="radio" name="plasmid_name" value="PVP57K">PVP57K<br>
+  <input type="radio" name="plasmid_name" value="pTYB12">pTYB12<br>
+  <br>
+IDT output format:
+  <input type="radio" name="IDT_format" value="single" checked>single primers
+  <input type="radio" name="IDT_format" value="plate">96 well plate<br>
+  <input type="submit" value="Submit" />
+</form>
+</body>
+</html>

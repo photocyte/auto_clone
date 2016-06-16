@@ -1,3 +1,0 @@
-ForwardOverlap:GAAAACTTGTACTTCCAGGCCCATGGC 
-ReverseOverlap:CTCGAATTCGGATCCGCCATGG 
-Comment:pHis8-4 Gibson primer for :

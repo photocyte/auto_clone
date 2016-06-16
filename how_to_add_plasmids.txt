@@ -1,0 +1,29 @@
+1)Add input checkbox under fileuploadform.html
+
+e.g. 
+<input type="radio" name="plasmid_name" value="pNew1">pNew1<br>
+
+2)Add a text file to the ./plasmids directory, with the name of the file before the suffix equal to the value from the previous step
+
+e.g.
+pNew1.txt, with the following inside:
+
+ForwardOverlap:GGGGGTTTTTAAACCCCC
+ReverseOverlap:TTTTTTCCCCCAAAAGGGG
+Comment:pNew1 Gibson primer for :
+
+Don't screw up colons etc.
+
+3)Thats the minimum needed. To have the script make the .gb plasmid files automatically, add a .gb file with several Ns to indicate where the insert should go
+
+e.g. 
+
+pNew.gb, and inside it has
+
+
+
+attgtacgatcgatcgatcgNNNNNNNNNNNagctagctagctacgatcgatcgtacg
+
+But actually in .gb (genbank) format.
+
+

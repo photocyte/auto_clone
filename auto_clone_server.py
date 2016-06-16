@@ -96,14 +96,14 @@ class Upload(tornado.web.RequestHandler):
 
         os.chdir(tmp_dir_name)
         if IDT_format == "plate":
-            auto_clone.plate_vertical_primer_order_fasta(record_iterator,plasmid_name,primer_prefix,primer_index,"A1")
+            auto_clone.plate_vertical_primer_order_fasta(record_iterator,plasmid_name,primer_prefix,primer_index,starting_well)
             self.write("<br>Produced IDT primer order file:")
             self.write("<br><a href="+"output_folders/"+tmp_str+"/IDT.xls>IDT.xls</a><br>")
 	    self.write("<br>Order from IDT here <a href=\"https://www.idtdna.com/site/order/plate/index/dna/1800\">https://www.idtdna.com/site/order/plate/index/dna/1800</a>")            
         elif IDT_format == "single":
 	    self.write("<br>Order from IDT here <a href=\"https://www.idtdna.com/site/order/oligoentry\">https://www.idtdna.com/site/order/oligoentry</a>")            
             self.write("<br>Copy paste below into IDT (CSV bulk input):<br><br>")
-            result = auto_clone.single_primer_order_fasta(record_iterator,plasmid_name,primer_prefix,primer_index,"A1") 
+            result = auto_clone.single_primer_order_fasta(record_iterator,plasmid_name,primer_prefix,primer_index,starting_well) 
             print result
             result = result.replace('\n','<br>')
             self.write(result)

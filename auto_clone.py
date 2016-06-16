@@ -298,7 +298,7 @@ def single_primer_order_fasta(record_iterator,plasmid_name,prefix,startindex,sta
         plate.newPrimer(forwardPrimer)
         plate.newPrimer(reversePrimer)
         
-        return plate.getCSV() 
+    return plate.getCSV() 
     
 
 

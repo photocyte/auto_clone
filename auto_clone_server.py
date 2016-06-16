@@ -60,23 +60,26 @@ class Upload(tornado.web.RequestHandler):
                 fileinfo = self.request.files['filearg'][0]
                 fname = fileinfo['filename']
                 extn = os.path.splitext(fname)[1]
-                input_stream = StringIO.StringIO(fileinfo['body'])
+                file_data = fileinfo['body'].strip()
+		file_data = str(file_data.replace("\r","\n"))
+		input_stream = StringIO.StringIO(file_data)
             except:
                 self.finish("No file uploaded or sequence input.")
                 return
         else:
-            input_stream = StringIO.StringIO(fasta_text)
-        
+            fasta_text = fasta_text.strip()
+            fasta_text = str(fasta_text.replace("\r","\n"))
+            input_stream = StringIO.StringIO(fasta_text)  
     
         ##Parse input stream. 
         if fasta_text == '':
             ##A file was uploaded. Try to parse it as fasta.
             record_iterator = list(Bio.SeqIO.parse(input_stream,"fasta"))
         else:
-            print [fasta_text]
             if fasta_text[0] == ">":
-                ##Seems like a fasta, parse as such.
+                ##Seems like the text box has fasta, parse as such.
                 record_iterator = list(Bio.SeqIO.parse(input_stream,"fasta"))
+		print input_stream.getvalue()
             elif fasta_text[0] == 'a' or fasta_text[0] == 'c' or fasta_text[0] == 't' or fasta_text[0] == 'g':
                 ##Seems like raw sequence, convert to record.
                 record = Bio.SeqRecord.SeqRecord(Bio.Seq.Seq(fasta_text\
@@ -87,10 +90,10 @@ class Upload(tornado.web.RequestHandler):
                 self.finish("couldn't parse FASTA text box")
                 return
     
-    
-        self.write("Ordering gibson primers for plasmid: "+plasmid_name)
+	self.write("Loaded "+str(len(record_iterator))+" record(s) successfully")        
+        self.write("<br>Ordering gibson primers for plasmid: "+plasmid_name)
         self.write("<br>IDT format is: "+IDT_format)
-        
+
         os.chdir(tmp_dir_name)
         if IDT_format == "plate":
             auto_clone.plate_vertical_primer_order_fasta(record_iterator,plasmid_name,primer_prefix,primer_index,"A1")

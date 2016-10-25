@@ -18,9 +18,7 @@ Don't screw up colons etc.
 
 e.g. 
 
-pNew.gb, and inside it has
-
-
+pNew1.gb, and inside it has
 
 attgtacgatcgatcgatcgNNNNNNNNNNNagctagctagctacgatcgatcgtacg
 

@@ -1,8 +1,3 @@
-
-# coding: utf-8
-
-# In[64]:
-
 import numpy
 import pandas
 import Bio
@@ -11,11 +6,6 @@ import Bio.Seq
 import Bio.SeqRecord
 import Bio.Alphabet
 import time
-
-##Version 0.2
-
-
-# In[66]:
 
 class IDT_plate_object():
     def __init__(self,PrimerNamePrefix,PrimerIndex,StartWellPosition,direction):
@@ -133,10 +123,6 @@ class IDT_plate_object():
 
         return buffer
         
-
-
-# In[67]:
-
 class plasmid_object():
     def __init__(self,name):
         if name != None:
@@ -177,7 +163,7 @@ class plasmid_object():
     ##This function concatenates multiple records to form a final plasmid & writes it to disk (genbank format)
     def writePlasmidFile(self,record,plate=None):
     
-        if self.plasmid == None:
+        if type(self.plasmid) == None:
             print "Can't write. Plasmid wasn't loaded."
             return None
             
@@ -314,25 +300,6 @@ else:
     print "importing auto_clone"
     
     
-
-
-
-# In[ ]:
-
-
-
-
-# In[ ]:
-
-
-
-
-# In[ ]:
-
-
-
-
-# In[ ]:
 
 
 

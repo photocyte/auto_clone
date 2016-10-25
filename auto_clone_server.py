@@ -2,7 +2,6 @@
 ##Timothy R. Fallon 2016
 ##Gibson cloning primer producer.
 
-
 import tornado
 import tornado.ioloop
 import tornado.web
@@ -31,7 +30,7 @@ class Userform(tornado.web.RequestHandler):
 class Upload(tornado.web.RequestHandler):
     def post(self):
     
-        os.chdir("/lab/solexa_weng/Seq_data/Tim/Scripts/auto_clone")
+        os.chdir("/lab/solexa_weng/Seq_data/Projects/Tim_Fallon/Scripts/auto_clone")
     
         self.write("<html><font face=\"courier\">")
         self.write("<div style =\"width: 5000px; overflow:scroll\">") ##Some tricks to have scrolling text.

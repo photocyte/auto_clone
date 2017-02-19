@@ -1,4 +1,3 @@
-import numpy
 import pandas
 import Bio
 import Bio.SeqIO
@@ -44,7 +43,7 @@ class IDT_plate_object():
         letter = self.WellPosition[0]
         number = int(self.WellPosition[1:])
         
-        ##No wrapping handling implemented
+        ##No wrapping handling implemented.  This is because running off the letters of the plate is probably not intended (have to implement having multiple plates)
         letter = chr(ord(letter) + increment)
         if ord(letter) > ord("I"):
             print "plate well out of range: too high"
@@ -95,18 +94,19 @@ class IDT_plate_object():
         newRow = {'WellPosition':self.WellPosition,"Name":str(self.PrimerNamePrefix)+format(self.PrimerIndex,'04'),"Sequence":str(record.seq),"Notes":str(record.description)}
         self.df = self.df.append(newRow,ignore_index=True)
         self.usedWells = list(self.df['WellPosition'].values)
-        self.incrementWellPosition(1)
         self.PrimerIndex += 1
     
     def newPrimerPairVertical(self,record_1,record_2):
-        self.newPrimer(record_1) ##Add primer A1->A2
-        self.incrementWellPositionCol(-1) ##Undo the normal +1 col from newPrimer A2->A1
+        self.newPrimer(record_1) ##Add primer A1
         self.incrementWellPositionRow(1) ##+1 for the letter A1->B1
-        self.newPrimer(record_2) ##add primer B1->B2
+        self.newPrimer(record_2) ##add primer B1
 
-        self.incrementWellPositionRow(-1) ## B2->A2
-        if int(self.WellPosition[1:]) == 1: ##Wrapping support.  Go an extra row to not run into R primer of previous primers
-            self.incrementWellPositionRow(1) 
+        self.incrementWellPositionRow(-1) ## B1->A1
+	
+        if int(self.WellPosition[1:]) == 12: ##Wrapping support.  Go an extra row to not run into R primer of previous primers.  E.g, if at A12, go to B12, then wrap to C1 when incremeting
+            self.incrementWellPositionRow(1)
+	
+	self.incrementWellPositionCol(1) ##A1->A2 
             
     def getCSV(self):
         ##Need name, sequence, scale, purification

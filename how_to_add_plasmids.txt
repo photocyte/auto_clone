@@ -18,7 +18,7 @@ Don't screw up colons etc.
 
 e.g. 
 
-pNew1.gb, and inside it has
+pNew1.gb, and inside it has capital Ns designating the insert:
 
 attgtacgatcgatcgatcgNNNNNNNNNNNagctagctagctacgatcgatcgtacg
 

@@ -144,9 +144,9 @@ class plasmid_object():
                 
             ##Load the plasmid overlap & comments.  Also possible to derive from plasmid file.
             handle = open("../../plasmids/"+name+".txt","rU")
-            forwardString = handle.readline()
-            reverseString = handle.readline()
-            commentString = handle.readline()
+            forwardString = handle.readline() ##Line 1
+            reverseString = handle.readline() ##Line 2
+            commentString = handle.readline() ##Line 3
             handle.close()
             self.gibson_forward_overlap = forwardString[forwardString.find(":")+1:].strip()
             self.gibson_reverse_overlap = reverseString[reverseString.find(":")+1:].strip()    ##Overlap Not including stop codon
@@ -186,7 +186,7 @@ class plasmid_object():
         my_feature = Bio.SeqFeature.SeqFeature(my_feature_location,type=my_feature_type,strand=1,qualifiers={"label":my_label,"ApEinfo_fwdcolor":"#00ccff","ApEinfo_revcolor":"#00ccff"})
         record_reformatted.features.append(my_feature)
 
-        complete_plasmid = self.forward_plasmid+record_reformatted+self.reverse_plasmid ##As simple as addition
+        complete_plasmid = self.forward_plasmid+record_reformatted+self.reverse_plasmid ##Concatenated records is as simple as addition. Thanks BioPython!
         
         if plate != None:
             file_string = plate.WellPosition+"_"+record.id+"_"+self.forward_plasmid.id+".gb"

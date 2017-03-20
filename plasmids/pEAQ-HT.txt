@@ -1,0 +1,3 @@
+ForwardOverlap:tattctgcccaaattcgcgaccggt
+ReverseOverlap:tgaaaccagagttaaaggcctcgag
+Comment:pEAQ-HT Gibson primers :

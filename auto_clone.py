@@ -7,14 +7,15 @@ import Bio.Alphabet
 import time
 
 class IDT_plate_object():
-    def __init__(self,PrimerNamePrefix,PrimerIndex,StartWellPosition,direction):
+    def __init__(self,PrimerNamePrefix,PrimerIndex,StartWellPosition,direction,ignoreWellOverlap=True):
         self.PrimerNamePrefix = PrimerNamePrefix
         self.PrimerIndex = PrimerIndex
         self.WellPosition = StartWellPosition
         self.plate_direction = direction ##alphabetical (A1,B1,C1... A2,B2,C2...) or numerical (A1,A2,A3...B1,B2,C3...)
         self.usedWells = []
         self.df = pandas.DataFrame(columns=["WellPosition","Name","Sequence","Notes"]) ##Write the header
-        
+	self.ignoreWellOverlap = ignoreWellOverlap        
+
     def incrementWellPositionCol(self,increment):
         self.usedWells.append(self.WellPosition)
         letter = self.WellPosition[0]
@@ -82,7 +83,7 @@ class IDT_plate_object():
         
         
     def newPrimer(self,record):
-        if self.WellPosition in self.usedWells:
+        if self.WellPosition in self.usedWells and self.ignoreWellOverlap == False:
             print "**Primer collision** Tried to put a primer in a well that was already marked as used."
             print "Exiting..."
             exit()
@@ -214,7 +215,7 @@ class plasmid_object():
         return newRecord
 
 def plate_vertical_primer_order_fasta(record_iterator,plasmid_name,prefix,startindex,startwell,platetype="numerical"):
-    plate = IDT_plate_object(prefix,startindex,startwell,platetype)
+    plate = IDT_plate_object(prefix,startindex,startwell,platetype,ignoreWellOverlap=False)
     for record in record_iterator:
 
         plasmid = plasmid_object(plasmid_name)  ##Needs to know which plasmid is being cloned into    
@@ -253,7 +254,7 @@ def plate_vertical_primer_order_fasta(record_iterator,plasmid_name,prefix,starti
     plate.df.to_excel("IDT.xls",index=False) 
     
 def single_primer_order_fasta(record_iterator,plasmid_name,prefix,startindex,startwell,platetype="numerical"):
-    plate = IDT_plate_object(prefix,startindex,startwell,platetype)
+    plate = IDT_plate_object(prefix,startindex,startwell,platetype,ignoreWellOverlap=True)
     for record in record_iterator:
 
         plasmid = plasmid_object(plasmid_name)  ##Needs to know which plasmid is being cloned into    

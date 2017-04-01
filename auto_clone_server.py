@@ -29,7 +29,7 @@ class Userform(tornado.web.RequestHandler):
  
 class Upload(tornado.web.RequestHandler):
     def post(self):
-    
+	##Handle clicking of the "submit" button
         os.chdir("/lab/solexa_weng/Seq_data/Projects/Tim_Fallon/Scripts/auto_clone")
     
         self.write("<html><font face=\"courier\">")

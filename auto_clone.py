@@ -173,7 +173,7 @@ class plasmid_object():
     ##This function concatenates multiple records to form a final plasmid & writes it to disk (genbank format)
     def writePlasmidFile(self,record,plate=None):
     
-        if self.plasmid == None:
+        if self.plasmid is None:
             print "Can't write. Plasmid wasn't loaded."
             return None
             

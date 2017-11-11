@@ -5,6 +5,7 @@ import Bio.Seq
 import Bio.SeqRecord
 import Bio.Alphabet
 import time
+import os
 
 class IDT_plate_object():
     def __init__(self,PrimerNamePrefix,PrimerIndex,StartWellPosition,direction,ignoreWellOverlap=True):
@@ -66,8 +67,7 @@ class IDT_plate_object():
         else:
             print("Plate direction not properly set!")
             exit()
-        
-            
+                    
     def formatPrimerRow(self,record,plasmid,direction):
         newRow = dict()
         newRow['WellPosition'] = self.WellPosition[0]+str(self.WellPosition[1:])
@@ -129,22 +129,31 @@ class plasmid_object():
         if name != None:
             ###Load plasmids to clone into:
             ###Expects the plasmid to have a stretch of "N"s, which is where it will stick the insert.
-            try:
-                handle = open("../../plasmids/"+name+".gb","rU")
-                self.plasmid = list(Bio.SeqIO.parse(handle,"gb"))[0]
-                handle.close()
-                self.plasmid.id = name
-                Nstart = self.plasmid.seq.find("N")
-                Nend = self.plasmid.seq.rfind("N")+1
-                self.forward_plasmid = self.plasmid[0:Nstart]
-                self.reverse_plasmid = self.plasmid[Nend:]
-            except:
+	    plasmid_path="../../plasmids/"+name+".gb"
+            if not os.path.isfile(plasmid_path):
+		print "No plasmid file found:",plasmid_path
                 self.plasmid = None
                 self.forward_plasmid = None
                 self.reverse_plasmid = None
+	    elif os.path.isfile(plasmid_path):
+                handle = open(plasmid_path,"rU")
+                self.plasmid = list(Bio.SeqIO.parse(handle,"gb"))[0]
+                handle.close()
+            	if len(self.plasmid.seq) == 0:
+		    print "Empty plasmid."
+		    self.plasmid = None
+                    self.forward_plasmid = None
+                    self.reverse_plasmid = None
+	        elif len(self.plasmid.seq) > 0:
+		    self.plasmid.id = name
+                    Nstart = self.plasmid.seq.find("N")
+                    Nend = self.plasmid.seq.rfind("N")+1
+                    self.forward_plasmid = self.plasmid[0:Nstart]
+                    self.reverse_plasmid = self.plasmid[Nend:]
                 
             ##Load the plasmid overlap & comments.  Also possible to derive from plasmid file.
-            handle = open("../../plasmids/"+name+".txt","rU")
+            text_path = "../../plasmids/"+name+".txt"
+	    handle = open(text_path,"rU")
             forwardString = handle.readline() ##Line 1
             reverseString = handle.readline() ##Line 2
             commentString = handle.readline() ##Line 3
@@ -164,7 +173,7 @@ class plasmid_object():
     ##This function concatenates multiple records to form a final plasmid & writes it to disk (genbank format)
     def writePlasmidFile(self,record,plate=None):
     
-        if type(self.plasmid) == None:
+        if self.plasmid == None:
             print "Can't write. Plasmid wasn't loaded."
             return None
             

@@ -1,0 +1,146 @@
+LOCUS       Exported                2655 bp ds-DNA     circular SYN 10-AUG-2017
+DEFINITION  synthetic circular DNA
+ACCESSION   .
+VERSION     .
+KEYWORDS    L4440 RNAi feeding vector.ape
+SOURCE      synthetic DNA construct
+  ORGANISM  synthetic DNA construct
+REFERENCE   1  (bases 1 to 2655)
+  AUTHORS   .
+  TITLE     Direct Submission
+  JOURNAL   Exported Aug 10, 2017 from SnapGene 4.0.2
+            http://www.snapgene.com
+FEATURES             Location/Qualifiers
+     source          1..2655
+                     /organism="synthetic DNA construct"
+                     /mol_type="other DNA"
+     primer_bind     19..38
+                     /label=T7 promoter
+                     /note="ApEinfo_fwdcolor=cyan
+                     ApEinfo_graphicformat=arrow_data {{0 1 2 0 0 -1} {} 0} 
+                     width 5 offset 0
+                     ApEinfo_revcolor=green"
+     misc_feature    53..58
+                     /label=EcoRV restriction site
+                     /note="ApEinfo_fwdcolor=#ff0003
+                     ApEinfo_graphicformat=arrow_data {{0 1 2 0 0 -1} {} 0} 
+                     width 5 offset 0
+                     ApEinfo_revcolor=green"
+     gap             59..73
+                     /estimated_length="15"
+     misc_feature    59..73
+                     /label=Gibson insert location
+     misc_feature    74..79
+                     /label=KpnI restriction site
+                     /note="ApEinfo_fwdcolor=#ff0a00
+                     ApEinfo_graphicformat=arrow_data {{0 1 2 0 0 -1} {} 0} 
+                     width 5 offset 0
+                     ApEinfo_revcolor=#ff0a00"
+     primer_bind     complement(87..107)
+                     /label=T7 promoter (reverse)
+                     /note="ApEinfo_fwdcolor=cyan
+                     ApEinfo_graphicformat=arrow_data {{0 1 2 0 0 -1} {} 0} 
+                     width 5 offset 0
+                     ApEinfo_revcolor=green"
+     primer_bind     complement(116..133)
+                     /label=M13-fwd
+                     /note="ApEinfo_fwdcolor=cyan
+                     ApEinfo_graphicformat=arrow_data {{0 1 2 0 0 -1} {} 0} 
+                     width 5 offset 0
+                     ApEinfo_revcolor=green"
+     CDS             204..272
+                     /label=LacZ alpha
+                     /note="ApEinfo_fwdcolor=#6495ed
+                     ApEinfo_graphicformat=arrow_data {{0 1 2 0 0 -1} {} 0} 
+                     width 5 offset 0
+                     ApEinfo_revcolor=#6495ed"
+     rep_origin      291..597
+                     /label=F1 ori
+                     /note="ApEinfo_fwdcolor=gray50
+                     ApEinfo_graphicformat=arrow_data {{0 1 2 0 0 -1} {} 0} 
+                     width 5 offset 0
+                     ApEinfo_revcolor=gray50"
+     misc_feature    790..818
+                     /label=Amp promoter
+                     /note="ApEinfo_fwdcolor=cyan
+                     ApEinfo_graphicformat=arrow_data {{0 1 2 0 0 -1} {} 0} 
+                     width 5 offset 0
+                     ApEinfo_revcolor=green"
+     misc_feature    851..857
+                     /label=Shine-delgarno like
+                     /note="ApEinfo_fwdcolor=#139eff
+                     ApEinfo_graphicformat=arrow_data {{0 1 2 0 0 -1} {} 0} 
+                     width 5 offset 0
+                     ApEinfo_revcolor=green"
+     misc_feature    860..1720
+                     /label=AmpR (beta-lactamase)
+                     /note="ApEinfo_fwdcolor=#faff00
+                     ApEinfo_graphicformat=arrow_data {{0 1 2 0 0 -1} {} 0} 
+                     width 5 offset 0
+                     ApEinfo_revcolor=green"
+     misc_feature    1718..1720
+                     /label=Stop codon
+                     /note="ApEinfo_fwdcolor=#a7acb0
+                     ApEinfo_graphicformat=arrow_data {{0 1 2 0 0 -1} {} 0} 
+                     width 5 offset 0
+                     ApEinfo_revcolor=green"
+     misc_feature    1781..1806
+                     /label=Stem-loop. Transcriptional terminator?
+                     /label=Stem-loop.  Transcriptional terminator?
+                     /note="ApEinfo_fwdcolor=#ffd991
+                     ApEinfo_graphicformat=arrow_data {{0 1 2 0 0 -1} {} 0} 
+                     width 5 offset 0
+                     ApEinfo_revcolor=green"
+     misc_feature    1875..2494
+                     /label=pBR322 ori
+                     /note="ApEinfo_fwdcolor=#009b9b
+                     ApEinfo_graphicformat=arrow_data {{0 1 2 0 0 -1} {} 0} 
+                     width 5 offset 0
+                     ApEinfo_revcolor=green"
+ORIGIN
+        1 aacctggctt atcgaaatta atacgactca ctatagggag accggcagat ctgatatcNN
+       61 NNNNNNNNNN NNNggtaccc aattcgccct atagtgagtc gtattacgcg cgctcactgg
+      121 ccgtcgtttt acaacgtcgt gactgggaaa accctggcgt tacccaactt aatcgccttg
+      181 cagcacatcc ccctttcgcc agctggcgta atagcgaaga ggcccgcacc gatcgccctt
+      241 cccaacagtt gcgcagcctg aatggcgaat gggacgcgcc ctgtagcggc gcattaagcg
+      301 cggcgggtgt ggtggttacg cgcagcgtga ccgctacact tgccagcgcc ctagcgcccg
+      361 ctcctttcgc tttcttccct tcctttctcg ccacgttcgc cggctttccc cgtcaagctc
+      421 taaatcgggg gctcccttta gggttccgat ttagtgcttt acggcacctc gaccccaaaa
+      481 aacttgatta gggtgatggt tcacgtagtg ggccatcgcc ctgatagacg gtttttcgcc
+      541 ctttgacgtt ggagtccacg ttctttaata gtggactctt gttccaaact ggaacaacac
+      601 tcaaccctat ctcggtctat tcttttgatt tataagggat tttgccgatt tcggcctatt
+      661 ggttaaaaaa tgagctgatt taacaaaaat ttaacgcgaa ttttaacaaa atattaacgc
+      721 ttacaattta ggtggcactt ttcggggaaa tgtgcgcgga acccctattt gtttattttt
+      781 ctaaatacat tcaaatatgt atccgctcat gagacaataa ccctgataaa tgcttcaata
+      841 atattgaaaa aggaagagta tgagtattca acatttccgt gtcgccctta ttcccttttt
+      901 tgcggcattt tgccttcctg tttttgctca cccagaaacg ctggtgaaag taaaagatgc
+      961 tgaagatcag ttgggtgcac gagtgggtta catcgaactg gatctcaaca gcggtaagat
+     1021 ccttgagagt tttcgccccg aagaacgttt tccaatgatg agcactttta aagttctgct
+     1081 atgtggcgcg gtattatccc gtattgacgc cgggcaagag caactcggtc gccgcataca
+     1141 ctattctcag aatgacttgg ttgagtactc accagtcaca gaaaagcatc ttacggatgg
+     1201 catgacagta agagaattat gcagtgctgc cataaccatg agtgataaca ctgcggccaa
+     1261 cttacttctg acaacgatcg gaggaccgaa ggagctaacc gcttttttgc acaacatggg
+     1321 ggatcatgta actcgccttg atcgttggga accggagctg aatgaagcca taccaaacga
+     1381 cgagcgtgac accacgatgc ctgtagcaat ggcaacaacg ttgcgcaaac tattaactgg
+     1441 cgaactactt actctagctt cccggcaaca attaatagac tggatggagg cggataaagt
+     1501 tgcaggacca cttctgcgct cggcccttcc ggctggctgg tttattgctg ataaatctgg
+     1561 agccggtgag cgtgggtctc gcggtatcat tgcagcactg gggccagatg gtaagccctc
+     1621 ccgtatcgta gttatctaca cgacggggag tcaggcaact atggatgaac gaaatagaca
+     1681 gatcgctgag ataggtgcct cactgattaa gcattggtaa ctgtcagacc aagtttactc
+     1741 atatatactt tagattgatt taaaacttca tttttaattt aaaaggatct aggtgaagat
+     1801 cctttttgat aatctcatga ccaaaatccc ttaacgtgag ttttcgttcc actgagcgtc
+     1861 agaccccgta gaaaagatca aaggatcttc ttgagatcct ttttttctgc gcgtaatctg
+     1921 ctgcttgcaa acaaaaaaac caccgctacc agcggtggtt tgtttgccgg atcaagagct
+     1981 accaactctt tttccgaagg taactggctt cagcagagcg cagataccaa atactgtcct
+     2041 tctagtgtag ccgtagttag gccaccactt caagaactct gtagcaccgc ctacatacct
+     2101 cgctctgcta atcctgttac cagtggctgc tgccagtggc gataagtcgt gtcttaccgg
+     2161 gttggactca agacgatagt taccggataa ggcgcagcgg tcgggctgaa cggggggttc
+     2221 gtgcacacag cccagcttgg agcgaacgac ctacaccgaa ctgagatacc tacagcgtga
+     2281 gctatgagaa agcgccacgc ttcccgaagg gagaaaggcg gacaggtatc cggtaagcgg
+     2341 cagggtcgga acaggagagc gcacgaggga gcttccaggg ggaaacgcct ggtatcttta
+     2401 tagtcctgtc gggtttcgcc acctctgact tgagcgtcga tttttgtgat gctcgtcagg
+     2461 ggggcggagc ctatggaaaa acgccagcaa cgcggccttt ttacggttcc tggccttttg
+     2521 ctggcctttt gctcacatgt tctttcctgc gttatcccct gattctgtgg ataaccgtat
+     2581 taccgccttt gagtgagctg ataccgctcg ccgcagccga acgaccgagc gcagcgagtc
+     2641 agtgagcgag gaagc
+//

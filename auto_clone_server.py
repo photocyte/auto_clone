@@ -1,13 +1,13 @@
-#! /usr/bin/python
 ##Timothy R. Fallon 2016
 ##Gibson cloning primer producer.
+# -*- coding: UTF-8 -*-
 
 import tornado
 import tornado.ioloop
 import tornado.web
 import os, uuid
 import os.path
-import StringIO
+import io
 import Bio
 import Bio.SeqIO
 import Bio.Seq
@@ -19,9 +19,10 @@ import logging
 import base64
 import auto_clone
 import zipfile
+import sys
  
 TCP_PORT = 5686
- 
+
 class Userform(tornado.web.RequestHandler):
     def get(self):
         self.render("fileuploadform.html")
@@ -29,26 +30,28 @@ class Userform(tornado.web.RequestHandler):
  
 class Upload(tornado.web.RequestHandler):
     def post(self):
-	##Handle clicking of the "submit" button
-        os.chdir("/lab/solexa_weng/Seq_data/Projects/Tim_Fallon/Scripts/auto_clone")
+    ##Handle clicking of the "submit" button
+        os.chdir(os.path.dirname(os.path.realpath(sys.argv[0]))) ##Change to the directory of the script.
     
         self.write("<html><font face=\"courier\">")
         self.write("<div style =\"width: 5000px; overflow:scroll\">") ##Some tricks to have scrolling text.
         plasmid_name = self.get_argument('plasmid_name', '')
-        fasta_text = self.get_argument('fasta_text','').strip().lower().replace('\n','').replace(' ','')
+        fasta_text = self.get_argument('fasta_text','').strip().replace('\n','').replace(' ','')
         record_id = self.get_argument('record_id','').strip()
         record_name = self.get_argument('record_name','').strip()
         record_description = self.get_argument('record_description','').strip()
         
         primer_prefix = self.get_argument('primer_prefix','').strip()
         primer_index = int(self.get_argument('primer_index','').strip())
-	starting_well = self.get_argument('starting_well','').strip()
+        starting_well = self.get_argument('starting_well','').strip()
         
         IDT_format = self.get_argument('IDT_format','').strip().strip('\n')
         
         ##Randomly assign name for temporary directory
-        tmp_str = base64.b64encode(os.urandom(16),['-','_'])
+        tmp_str = base64.b32encode(os.urandom(20)).decode('utf-8')
         tmp_dir_name = "./output_folders/"+tmp_str
+        if not os.path.isdir("./output_folders/"):
+            os.mkdir("./output_folders/")
         os.mkdir(tmp_dir_name)
         current_dir = os.getcwd()
     
@@ -60,15 +63,15 @@ class Upload(tornado.web.RequestHandler):
                 fname = fileinfo['filename']
                 extn = os.path.splitext(fname)[1]
                 file_data = fileinfo['body'].strip()
-		file_data = str(file_data.replace("\r","\n"))
-		input_stream = StringIO.StringIO(file_data)
+                file_data = str(file_data.replace("\r","\n"))
+                input_stream = io.StringIO(file_data)
             except:
                 self.finish("No file uploaded or sequence input.")
                 return
         else:
             fasta_text = fasta_text.strip()
             fasta_text = str(fasta_text.replace("\r","\n"))
-            input_stream = StringIO.StringIO(fasta_text)  
+            input_stream = io.StringIO(fasta_text)  
     
         ##Parse input stream. 
         if fasta_text == '':
@@ -78,7 +81,7 @@ class Upload(tornado.web.RequestHandler):
             if fasta_text[0] == ">":
                 ##Seems like the text box has fasta, parse as such.
                 record_iterator = list(Bio.SeqIO.parse(input_stream,"fasta"))
-		print input_stream.getvalue()
+                print(input_stream.getvalue())
             elif fasta_text[0] == 'a' or fasta_text[0] == 'c' or fasta_text[0] == 't' or fasta_text[0] == 'g':
                 ##Seems like raw sequence, convert to record.
                 record = Bio.SeqRecord.SeqRecord(Bio.Seq.Seq(fasta_text\
@@ -89,7 +92,7 @@ class Upload(tornado.web.RequestHandler):
                 self.finish("couldn't parse FASTA text box")
                 return
     
-	self.write("Loaded "+str(len(record_iterator))+" record(s) successfully")        
+        self.write("Loaded "+str(len(record_iterator))+" record(s) successfully")        
         self.write("<br>Ordering gibson primers for plasmid: "+plasmid_name)
         self.write("<br>IDT format is: "+IDT_format)
 
@@ -98,12 +101,12 @@ class Upload(tornado.web.RequestHandler):
             auto_clone.plate_vertical_primer_order_fasta(record_iterator,plasmid_name,primer_prefix,primer_index,starting_well)
             self.write("<br>Produced IDT primer order file:")
             self.write("<br><a href="+"output_folders/"+tmp_str+"/IDT.xls>IDT.xls</a><br>")
-	    self.write("<br>Order from IDT here <a href=\"https://www.idtdna.com/site/order/plate/index/dna/1800\">https://www.idtdna.com/site/order/plate/index/dna/1800</a>")            
+            self.write("<br>Order from IDT here <a href=\"https://www.idtdna.com/site/order/plate/index/dna/1800\">https://www.idtdna.com/site/order/plate/index/dna/1800</a>")            
         elif IDT_format == "single":
-	    self.write("<br>Order from IDT here <a href=\"https://www.idtdna.com/site/order/oligoentry\">https://www.idtdna.com/site/order/oligoentry</a>")            
+            self.write("<br>Order from IDT here <a href=\"https://www.idtdna.com/site/order/oligoentry\">https://www.idtdna.com/site/order/oligoentry</a>")            
             self.write("<br>Copy paste below into IDT (CSV bulk input):<br><br>")
             result = auto_clone.single_primer_order_fasta(record_iterator,plasmid_name,primer_prefix,primer_index,starting_well) 
-            print result
+            print(result)
             result = result.replace('\n','<br>')
             self.write(result)
         os.chdir(current_dir)
@@ -135,7 +138,7 @@ class Upload(tornado.web.RequestHandler):
         ##Since it holds the sequences in memory to compare if duplicates exist, this could deal badly with large memory fasta files.
         self.finish("</font></html>")
         #self.finish(cname + " is uploaded!! Check %s folder" %__UPLOADS__)
-        return 0
+        ##return 0
  
  
 application = tornado.web.Application([
@@ -151,6 +154,6 @@ if __name__ == "__main__":
     f = open('fasta_lookup_server.pid', 'w')
     f.write(pid)
     f.close()
-
+    print("Running server on TCP_PORT:",TCP_PORT)
     application.listen(TCP_PORT)
     tornado.ioloop.IOLoop.instance().start()

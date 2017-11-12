@@ -1,3 +1,4 @@
+# -*- coding: UTF-8 -*-
 import pandas
 import Bio
 import Bio.SeqIO
@@ -15,7 +16,7 @@ class IDT_plate_object():
         self.plate_direction = direction ##alphabetical (A1,B1,C1... A2,B2,C2...) or numerical (A1,A2,A3...B1,B2,C3...)
         self.usedWells = []
         self.df = pandas.DataFrame(columns=["WellPosition","Name","Sequence","Notes"]) ##Write the header
-	self.ignoreWellOverlap = ignoreWellOverlap        
+        self.ignoreWellOverlap = ignoreWellOverlap        
 
     def incrementWellPositionCol(self,increment):
         self.usedWells.append(self.WellPosition)
@@ -35,9 +36,9 @@ class IDT_plate_object():
         
         
         if ord(letter) > ord("I"):
-            print "plate well out of range: too high"
+            print("plate well out of range: too high")
         if ord(letter) < ord("A"):
-            print "plate well out of range: too low"
+            print("plate well out of range: too low")
         self.WellPosition = letter+str(number)
         
     def incrementWellPositionRow(self,increment):
@@ -48,12 +49,12 @@ class IDT_plate_object():
         ##No wrapping handling implemented.  This is because running off the letters of the plate is probably not intended (have to implement having multiple plates)
         letter = chr(ord(letter) + increment)
         if ord(letter) > ord("I"):
-            print "plate well out of range: too high"
-            print "Exiting program..."
+            print("plate well out of range: too high")
+            print("Exiting program...")
             exit()
         if ord(letter) < ord("A"):
-            print "plate well out of range: too low"
-            print "Exiting program..."
+            print("plate well out of range: too low")
+            print("Exiting program...")
             exit()
         self.WellPosition = letter+str(number)
         
@@ -84,8 +85,8 @@ class IDT_plate_object():
         
     def newPrimer(self,record):
         if self.WellPosition in self.usedWells and self.ignoreWellOverlap == False:
-            print "**Primer collision** Tried to put a primer in a well that was already marked as used."
-            print "Exiting..."
+            print("**Primer collision** Tried to put a primer in a well that was already marked as used.")
+            print("Exiting...")
             exit()
         
         if record.description == None:
@@ -103,11 +104,10 @@ class IDT_plate_object():
         self.newPrimer(record_2) ##add primer B1
 
         self.incrementWellPositionRow(-1) ## B1->A1
-	
+    
         if int(self.WellPosition[1:]) == 12: ##Wrapping support.  Go an extra row to not run into R primer of previous primers.  E.g, if at A12, go to B12, then wrap to C1 when incremeting
             self.incrementWellPositionRow(1)
-	
-	self.incrementWellPositionCol(1) ##A1->A2 
+            self.incrementWellPositionCol(1) ##A1->A2 
             
     def getCSV(self):
         ##Need name, sequence, scale, purification
@@ -129,23 +129,23 @@ class plasmid_object():
         if name != None:
             ###Load plasmids to clone into:
             ###Expects the plasmid to have a stretch of "N"s, which is where it will stick the insert.
-	    plasmid_path="../../plasmids/"+name+".gb"
+            plasmid_path="../../plasmids/"+name+".gb"
             if not os.path.isfile(plasmid_path):
-		print "No plasmid file found:",plasmid_path
+                print("No plasmid file found:",plasmid_path)
                 self.plasmid = None
                 self.forward_plasmid = None
                 self.reverse_plasmid = None
-	    elif os.path.isfile(plasmid_path):
+            elif os.path.isfile(plasmid_path):
                 handle = open(plasmid_path,"rU")
                 self.plasmid = list(Bio.SeqIO.parse(handle,"gb"))[0]
                 handle.close()
-            	if len(self.plasmid.seq) == 0:
-		    print "Empty plasmid."
-		    self.plasmid = None
+                if len(self.plasmid.seq) == 0:
+                    print("Empty plasmid.")
+                    self.plasmid = None
                     self.forward_plasmid = None
                     self.reverse_plasmid = None
-	        elif len(self.plasmid.seq) > 0:
-		    self.plasmid.id = name
+                elif len(self.plasmid.seq) > 0:
+                    self.plasmid.id = name
                     Nstart = self.plasmid.seq.find("N")
                     Nend = self.plasmid.seq.rfind("N")+1
                     self.forward_plasmid = self.plasmid[0:Nstart]
@@ -153,7 +153,7 @@ class plasmid_object():
                 
             ##Load the plasmid overlap & comments.  Also possible to derive from plasmid file.
             text_path = "../../plasmids/"+name+".txt"
-	    handle = open(text_path,"rU")
+            handle = open(text_path,"rU")
             forwardString = handle.readline() ##Line 1
             reverseString = handle.readline() ##Line 2
             commentString = handle.readline() ##Line 3
@@ -174,7 +174,7 @@ class plasmid_object():
     def writePlasmidFile(self,record,plate=None):
     
         if self.plasmid is None:
-            print "Can't write. Plasmid wasn't loaded."
+            print("Can't write. Plasmid wasn't loaded.")
             return None
             
         ##Have to get the record sequence type to IUPACAmbiguousDNA
@@ -231,25 +231,25 @@ def plate_vertical_primer_order_fasta(record_iterator,plasmid_name,prefix,starti
         ##Write a plasmid file
         plasmid.writePlasmidFile(record,plate=plate) ##Inserts CDS into plasmid.  Uses plate for description type stuff.  Plate optional.
 
-        print "________________________________________________________"
+        print("________________________________________________________")
         #if record.seq[:45].translate()[0] != "M" or record.seq[-45:].translate()[14] != "*":
         #    print "***",record.id ,"*** not properly translated"
         #else:
-        print "Record id:",record.id
-        print "Record description:",record.description
-        print ""
+        print("Record id:",record.id)
+        print("Record description:",record.description)
+        print("")
         if "GGTCTC" in record.seq or "CCAGAG" in record.seq:
-            print "Incompatible with BsaI"
+            print("Incompatible with BsaI")
 
-            print "GGTCTC:",record.seq.find("GGTCTC")
-            print "CCAGAG:",record.seq.find("CCAGAG")
+            print("GGTCTC:",record.seq.find("GGTCTC"))
+            print("CCAGAG:",record.seq.find("CCAGAG"))
         if "CGTCTC" in record.seq or "GCAGAG" in record.seq:
-            print "Incompatible with BsmBI"    
-            print "CGTCTC:",record.seq.find("CGTCTC")
-            print "GCAGAG:",record.seq.find("GCAGAG")
+            print("Incompatible with BsmBI")    
+            print("CGTCTC:",record.seq.find("CGTCTC"))
+            print("GCAGAG:",record.seq.find("GCAGAG"))
         if "GCGGCCGC" in record.seq:
-            print "Incompatible with NotI"    
-            print "GCGGCCGC:",record.seq.find("GCGGCCGC")
+            print("Incompatible with NotI")  
+            print("GCGGCCGC:",record.seq.find("GCGGCCGC"))
 
         ###Related primer pairs in a vertical orientation.  E.g. A1,B1 (numeric incrementing) or A1,A2 (alphabet incremeting)
         #plate.newPrimer(record)
@@ -270,24 +270,24 @@ def single_primer_order_fasta(record_iterator,plasmid_name,prefix,startindex,sta
         ##Write a plasmid file
         plasmid.writePlasmidFile(record,plate=plate) ##Inserts CDS into plasmid.  Uses plate for description type stuff.  Plate optional.
 
-        print "________________________________________________________"
+        print("________________________________________________________")
         #if record.seq[:45].translate()[0] != "M" or record.seq[-45:].translate()[14] != "*":
         #    print "***",record.id ,"*** not properly translated"
-        print "Record id:",record.id
-        print "Record description:",record.description
-        print ""
+        print("Record id:",record.id)
+        print("Record description:",record.description)
+        print("")
         if "GGTCTC" in record.seq or "CCAGAG" in record.seq:
-            print "Incompatible with BsaI"
+            print("Incompatible with BsaI")
 
-            print "GGTCTC:",record.seq.find("GGTCTC")
-            print "CCAGAG:",record.seq.find("CCAGAG")
+            print("GGTCTC:",record.seq.find("GGTCTC"))
+            print("CCAGAG:",record.seq.find("CCAGAG"))
         if "CGTCTC" in record.seq or "GCAGAG" in record.seq:
-            print "Incompatible with BsmBI"    
-            print "CGTCTC:",record.seq.find("CGTCTC")
-            print "GCAGAG:",record.seq.find("GCAGAG")
+            print("Incompatible with BsmBI")    
+            print("CGTCTC:",record.seq.find("CGTCTC"))
+            print("GCAGAG:",record.seq.find("GCAGAG"))
         if "GCGGCCGC" in record.seq:
-            print "Incompatible with NotI"    
-            print "GCGGCCGC:",record.seq.find("GCGGCCGC")
+            print("Incompatible with NotI")    
+            print("GCGGCCGC:",record.seq.find("GCGGCCGC"))
 
         forwardPrimer = plasmid.formatGibsonPrimerForward(record,24)
         reversePrimer = plasmid.formatGibsonPrimerReverse(record,24)
@@ -307,7 +307,7 @@ if __name__ == "__main__":
     record_iterator = list(Bio.SeqIO.parse(fasta_handle,"fasta"))
     plate_vertical_primer_order_fasta(record_iterator,"pHis8_4","TRF_x",1,"A1")
 else:
-    print "importing auto_clone"
+    print("importing auto_clone")
     
     
 

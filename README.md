@@ -7,12 +7,14 @@ Dependencies:
 * BioPython
 * Pandas
 * SciPy (for the Tornado stand alone webserver)
+* xlwt (for export of Excel file)
 
 Installation:
 * sudo port install py36
 * sudo port install py36-scipy
 * sudo port install py36-pandas
 * sudo port install py36-biopython
+* sudo port install py36-xlwt
 
 Usage:
 * python auto_clone_server.py

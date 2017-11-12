@@ -209,7 +209,7 @@ class plasmid_object():
         
     def formatGibsonPrimerForward(self,record,forwardPrimerLength):
         primerDescription = "Forward "+self.description+record.id+record.description
-        sequence = str(self.gibson_forward_overlap)+str(record.seq[:forwardPrimerLength])
+        sequence = str(self.gibson_forward_overlap).upper()+str(record.seq[:forwardPrimerLength]).lower()
         
         seq_reformatted = Bio.Seq.Seq(str(sequence), Bio.Alphabet.IUPAC.IUPACAmbiguousDNA())
         newRecord = Bio.SeqRecord.SeqRecord(seq_reformatted,id=record.id, name=record.name,description=primerDescription)
@@ -217,7 +217,7 @@ class plasmid_object():
 
     def formatGibsonPrimerReverse(self,record,reversePrimerLength):
         primerDescription = "Reverse "+self.description+record.id+record.description
-        sequence = str(self.gibson_reverse_overlap)+str(record.seq[-reversePrimerLength:].reverse_complement())
+        sequence = str(self.gibson_reverse_overlap).upper()+str(record.seq[-reversePrimerLength:].reverse_complement()).lower()
         
         seq_reformatted = Bio.Seq.Seq(str(sequence), Bio.Alphabet.IUPAC.IUPACAmbiguousDNA())
         newRecord = Bio.SeqRecord.SeqRecord(seq_reformatted,id=record.id, name=record.name,description=primerDescription)

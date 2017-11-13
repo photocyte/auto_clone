@@ -21,8 +21,9 @@ sudo port install py36-xlwt
 
 Usage:
 ```
+sudo port select --set python3 python36
 cd auto_clone
-python auto_clone_server.py
+python3 ./auto_clone_server.py
 ```
 Default webaddress is http://127.0.0.1:5686
 

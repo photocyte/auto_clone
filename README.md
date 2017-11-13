@@ -26,3 +26,6 @@ python auto_clone_server.py
 ```
 Default webaddress is http://127.0.0.1:5686
 
+See [how_to_add_plasmids.txt](./how_to_add_plasmids.txt) to add plasmids.
+
+

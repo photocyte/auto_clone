@@ -9,7 +9,7 @@ Dependencies:
 * SciPy (for the Tornado stand alone webserver)
 * xlwt (for export of Excel file)
 
-Installation (using [MacPorts](https://www.macports.org):
+Installation (using [MacPorts](https://www.macports.org)):
 ```
 git clone https://github.com/photocyte/auto_clone.git
 sudo port install py36
@@ -23,5 +23,6 @@ Usage:
 ```
 cd auto_clone
 python auto_clone_server.py
-Default webaddress is http://127.0.0.1:5686
 ```
+Default webaddress is http://127.0.0.1:5686
+

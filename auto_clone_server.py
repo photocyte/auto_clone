@@ -37,6 +37,7 @@ class Upload(tornado.web.RequestHandler):
         self.write("<div style =\"width: 5000px; overflow:scroll\">") ##Some tricks to have scrolling text.
         plasmid_name = self.get_argument('plasmid_name', '')
         fasta_text = self.get_argument('fasta_text','').strip().replace('\n','').replace(' ','')
+        print(type(fasta_text))
         record_id = self.get_argument('record_id','').strip()
         record_name = self.get_argument('record_name','').strip()
         record_description = self.get_argument('record_description','').strip()
@@ -56,7 +57,7 @@ class Upload(tornado.web.RequestHandler):
         current_dir = os.getcwd()
     
         ##Setup input stream.
-        if fasta_text == '':
+        if len(fasta_text) == 0:
             ##Text box is empty, is there a file?
             try:
                 fileinfo = self.request.files['filearg'][0]
@@ -70,7 +71,8 @@ class Upload(tornado.web.RequestHandler):
                 return
         else:
             fasta_text = fasta_text.strip()
-            fasta_text = str(fasta_text.replace("\r","\n"))
+            fasta_text = fasta_text.replace("\r","\n")
+            print(type(fasta_text))
             input_stream = io.StringIO(fasta_text)  
     
         ##Parse input stream. 

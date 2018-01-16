@@ -56,7 +56,7 @@ class Upload(tornado.web.RequestHandler):
         current_dir = os.getcwd()
     
         ##Setup input stream.
-        if fasta_text == '':
+        if len(fasta_text) == 0:
             ##Text box is empty, is there a file?
             try:
                 fileinfo = self.request.files['filearg'][0]
@@ -70,7 +70,7 @@ class Upload(tornado.web.RequestHandler):
                 return
         else:
             fasta_text = fasta_text.strip()
-            fasta_text = str(fasta_text.replace("\r","\n"))
+            fasta_text = fasta_text.replace("\r","\n")
             input_stream = io.StringIO(fasta_text)  
     
         ##Parse input stream. 
@@ -82,7 +82,7 @@ class Upload(tornado.web.RequestHandler):
                 ##Seems like the text box has fasta, parse as such.
                 record_iterator = list(Bio.SeqIO.parse(input_stream,"fasta"))
                 print(input_stream.getvalue())
-            elif fasta_text[0] == 'a' or fasta_text[0] == 'c' or fasta_text[0] == 't' or fasta_text[0] == 'g':
+            elif fasta_text[0] == 'a' or fasta_text[0] == 'c' or fasta_text[0] == 't' or fasta_text[0] == 'g' or fasta_text[0] == 'A' or fasta_text[0] == 'C' or fasta_text[0] == 'T' or fasta_text[0] == 'G':
                 ##Seems like raw sequence, convert to record.
                 record = Bio.SeqRecord.SeqRecord(Bio.Seq.Seq(fasta_text\
                 ,Bio.Alphabet.IUPAC.IUPACAmbiguousDNA()),id=record_id, name=record_name

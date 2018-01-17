@@ -84,7 +84,10 @@ class Upload(tornado.web.RequestHandler):
                 print(input_stream.getvalue())
             elif fasta_text[0] == 'a' or fasta_text[0] == 'c' or fasta_text[0] == 't' or fasta_text[0] == 'g' or fasta_text[0] == 'A' or fasta_text[0] == 'C' or fasta_text[0] == 'T' or fasta_text[0] == 'G':
                 ##Seems like raw sequence, convert to record.
-                record = Bio.SeqRecord.SeqRecord(Bio.Seq.Seq(fasta_text\
+		##strip out newlines and spaces
+                text_tmp = fasta_text.replace("\n","")
+                text_tmp = text_tmp.replace(" ","")
+                record = Bio.SeqRecord.SeqRecord(Bio.Seq.Seq(text_tmp\
                 ,Bio.Alphabet.IUPAC.IUPACAmbiguousDNA()),id=record_id, name=record_name
                 ,description=record_description)
                 record_iterator = [record]

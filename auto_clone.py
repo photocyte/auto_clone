@@ -188,13 +188,14 @@ class plasmid_object():
         my_end_pos = Bio.SeqFeature.ExactPosition(len(record.seq))
         my_feature_location = Bio.SeqFeature.FeatureLocation(my_start_pos,my_end_pos)
         my_feature_type = "CDS"
-        
+        translation_seq = record_reformatted[my_start_pos:my_end_pos].translate().seq
         if plate != None:
             my_label = plate.WellPosition+"_"+record.id+" CDS "+str(len(record.seq))+"bp"
         else:
             my_label = record.id+" CDS "+str(len(record.seq))+"bp"
             
-        my_feature = Bio.SeqFeature.SeqFeature(my_feature_location,type=my_feature_type,strand=1,qualifiers={"label":my_label,"ApEinfo_fwdcolor":"#00ccff","ApEinfo_revcolor":"#00ccff","note":"color: #993366"})
+        my_feature = Bio.SeqFeature.SeqFeature(my_feature_location,type=my_feature_type,strand=1,qualifiers={"label":my_label,"ApEinfo_fwdcolor":"#00ccff","ApEinfo_revcolor":"#00ccff","note":"color: #993366","codon_start":"1","transation":translation_seq})
+        
         record_reformatted.features.append(my_feature)
 
         complete_plasmid = self.forward_plasmid+record_reformatted+self.reverse_plasmid ##Concatenated records is as simple as addition. Thanks BioPython!

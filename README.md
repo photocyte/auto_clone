@@ -19,7 +19,7 @@ sudo port install py36-biopython
 sudo port install py36-xlwt
 ```
 
-### Usage:
+### Usage (Mac OS X):
 ```
 sudo port select --set python3 python36
 cd auto_clone

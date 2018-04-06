@@ -194,7 +194,7 @@ class plasmid_object():
         else:
             my_label = record.id+" CDS "+str(len(record.seq))+"bp"
             
-        my_feature = Bio.SeqFeature.SeqFeature(my_feature_location,type=my_feature_type,strand=1,qualifiers={"label":my_label,"ApEinfo_fwdcolor":"#00ccff","ApEinfo_revcolor":"#00ccff","color:":" #00ccff"})
+        my_feature = Bio.SeqFeature.SeqFeature(my_feature_location,type=my_feature_type,strand=1,qualifiers={"label":my_label,"ApEinfo_fwdcolor":"#00ccff","ApEinfo_revcolor":"#00ccff","note":"color: #00ccff"})
         record_reformatted.features.append(my_feature)
 
         complete_plasmid = self.forward_plasmid+record_reformatted+self.reverse_plasmid ##Concatenated records is as simple as addition. Thanks BioPython!

@@ -188,7 +188,7 @@ class plasmid_object():
         my_end_pos = Bio.SeqFeature.ExactPosition(len(record.seq))
         my_feature_location = Bio.SeqFeature.FeatureLocation(my_start_pos,my_end_pos)
         my_feature_type = "CDS"
-        translation_seq = record_reformatted[my_start_pos:my_end_pos].translate().seq
+        translation_seq = string(record_reformatted[my_start_pos:my_end_pos].seq.translate())
         if plate != None:
             my_label = plate.WellPosition+"_"+record.id+" CDS "+str(len(record.seq))+"bp"
         else:

@@ -188,7 +188,7 @@ class plasmid_object():
         my_end_pos = Bio.SeqFeature.ExactPosition(len(record.seq))
         my_feature_location = Bio.SeqFeature.FeatureLocation(my_start_pos,my_end_pos)
         my_feature_type = "CDS"
-        translation_seq = string(record_reformatted[my_start_pos:my_end_pos].seq.translate())
+        translation_seq = str(record_reformatted[my_start_pos:my_end_pos].seq.translate())
         if plate != None:
             my_label = plate.WellPosition+"_"+record.id+" CDS "+str(len(record.seq))+"bp"
         else:
@@ -201,12 +201,23 @@ class plasmid_object():
         complete_plasmid = self.forward_plasmid+record_reformatted+self.reverse_plasmid ##Concatenated records is as simple as addition. Thanks BioPython!
         
         ##Add appropriate annotations to plasmid
+        complete_plasmid.name = "Exported"
         complete_plasmid.annotations["topology"] = "circular"
         complete_plasmid.annotations["molecule_type"] = "ds-DNA"
         today = datetime.datetime.today()
         today_string = today.strftime("%d-%b-%Y").upper() ##%d-%b-%Y -> uppercase
         complete_plasmid.annotations["date"] = today_string
-	
+        complete_plasmid.annotations["source"] = "natural DNA sequence"	
+        complete_plasmid.annotations["accession"] = "<unknown id>"	
+        complete_plasmid.annotations["organism"] = "unspecified"	
+        ##Generate generic reference object
+        genbank_reference = Bio.SeqFeature.Reference()
+        genbank_reference.location = [Bio.SeqFeature.FeatureLocation(Bio.SeqFeature.ExactPosition(0), Bio.SeqFeature.ExactPosition(len(complete_plasmid)))]
+        genbank_reference.authors = "."
+        genbank_reference.title = "Direct Submission"
+        genbank_reference_date_string = today.strftime("%b %d, %Y")
+        genbank_reference.journal = "Exported "+genbank_reference_date_string+" using auto_clone https://github.com/photocyte/auto_clone. Formatted for SnapGene 4.1.7 http://www.snapgene.com"
+        complete_plasmid.annotations["references"] = [genbank_reference]
         if plate != None:
             file_string = plate.WellPosition+"_"+record.id+"_"+self.forward_plasmid.id+".gb"
         else:

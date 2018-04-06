@@ -7,6 +7,7 @@ import Bio.SeqRecord
 import Bio.Alphabet
 import time
 import os
+import datetime
 
 class IDT_plate_object():
     def __init__(self,PrimerNamePrefix,PrimerIndex,StartWellPosition,direction,ignoreWellOverlap=True):
@@ -198,6 +199,13 @@ class plasmid_object():
 
         complete_plasmid = self.forward_plasmid+record_reformatted+self.reverse_plasmid ##Concatenated records is as simple as addition. Thanks BioPython!
         
+        ##Add appropriate annotations to plasmid
+        complete_plasmid.annotations["topology"] = "circular"
+        complete_plasmid.annotations["molecule_type"] = "ds-DNA"
+        today = datetime.datetime.today()
+        today_string = today.strftime("%d-%b-%Y").upper() ##%d-%b-%Y -> uppercase
+        complete_plasmid.annotations["date"] = today_string
+	
         if plate != None:
             file_string = plate.WellPosition+"_"+record.id+"_"+self.forward_plasmid.id+".gb"
         else:

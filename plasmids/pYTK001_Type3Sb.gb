@@ -1,0 +1,79 @@
+LOCUS       Exported                1681 bp ds-DNA     circular SYN 09-APR-2018
+DEFINITION  .
+ACCESSION   <unknown
+VERSION     .
+KEYWORDS    .
+SOURCE      synthetic DNA construct
+  ORGANISM  synthetic DNA construct
+REFERENCE   1  (bases 1 to 1681)
+  AUTHORS   .
+  TITLE     Direct Submission
+  JOURNAL   Exported Apr 9, 2018 from SnapGene 4.1.7
+            http://www.snapgene.com
+FEATURES             Location/Qualifiers
+     source          1..1681
+                     /organism="synthetic DNA construct"
+                     /mol_type="other DNA"
+                     /note="color: #ffffff"
+     protein_bind    complement(322..325)
+                     /label=BsmBI
+                     /label=BsmBI(1)
+                     /note="color: #e72e00; direction: LEFT"
+     misc_feature    332..334
+                     /label=Upstream of YFG methionine (Ser)
+                     /note="color: #a6acb3"
+     gap             335..346
+                     /estimated_length=12
+     misc_feature    347..349
+                     /label=YFG stop codon
+                     /note="color: #a6acb3"
+     misc_feature    350..353
+                     /label=BsaI cut site
+                     /note="color: #ff9900"
+     misc_feature    355..360
+                     /label=BsaI recognition site
+                     /note="color: #00ffff"
+     misc_feature    complement(363..471)
+                     /label=CamR Terminator
+                     /note="color: #66ccff; direction: LEFT"
+     CDS             complement(472..1131)
+                     /label=CamR
+                     /note="color: #0000ff; direction: LEFT"
+     promoter        complement(1132..1236)
+                     /label=CamR Promoter
+                     /note="color: #66ccff; direction: LEFT"
+     rep_origin      complement(1237..319)
+                     /direction=LEFT
+                     /label=ColE1
+                     /note="color: #7f7f7f"
+ORIGIN
+        1 actgagatac ctacagcgtg agctatgaga aagcgccacg cttcccgaag ggagaaaggc
+       61 ggacaggtat ccggtaagcg gcagggtcgg aacaggagag cgcacgaggg agcttccagg
+      121 gggaaacgcc tggtatcttt atagtcctgt cgggtttcgc cacctctgac ttgagcgtcg
+      181 atttttgtga tgctcgtcag gggggcggag cctatggaaa aacgccagca acgcggcctt
+      241 tttacggttc ctggcctttt gctggccttt tgctcacatg ttctttcctg cgttatcccc
+      301 tgattctgtg gataaccgta gtcggtctca ttctnnnnnn nnnnnntaaa tcctgagacc
+      361 agaccaataa aaaacgcccg gcggcaaccg agcgttctga acaaatccag atggagttct
+      421 gaggtcatta ctggatctat caacaggagt ccaagcgagc tcgatatcaa attacgcccc
+      481 gccctgccac tcatcgcagt actgttgtaa ttcattaagc attctgccga catggaagcc
+      541 atcacaaacg gcatgatgaa cctgaatcgc cagcggcatc agcaccttgt cgccttgcgt
+      601 ataatatttg cccatggtga aaacgggggc gaagaagttg tccatattgg ccacgtttaa
+      661 atcaaaactg gtgaaactca cccagggatt ggctgaaacg aaaaacatat tctcaataaa
+      721 ccctttaggg aaataggcca ggttttcacc gtaacacgcc acatcttgcg aatatatgtg
+      781 tagaaactgc cggaaatcgt cgtggtattc actccagagc gatgaaaacg tttcagtttg
+      841 ctcatggaaa acggtgtaac aagggtgaac actatcccat atcaccagct caccgtcttt
+      901 cattgccata cgaaattccg gatgagcatt catcaggcgg gcaagaatgt gaataaaggc
+      961 cggataaaac ttgtgcttat ttttctttac ggtctttaaa aaggccgtaa tatccagctg
+     1021 aacggtctgg ttataggtac attgagcaac tgactgaaat gcctcaaaat gttctttacg
+     1081 atgccattgg gatatatcaa cggtggtata tccagtgatt tttttctcca ttttagcttc
+     1141 cttagctcct gaaaatctcg ataactcaaa aaatacgccc ggtagtgatc ttatttcatt
+     1201 atggtgaaag ttggaacctc ttacgtgccc gatcaatcat gaccaaaatc ccttaacgtg
+     1261 agttttcgtt ccactgagcg tcagaccccg tagaaaagat caaaggatct tcttgagatc
+     1321 ctttttttct gcgcgtaatc tgctgcttgc aaacaaaaaa accaccgcta ccagcggtgg
+     1381 tttgtttgcc ggatcaagag ctaccaactc tttttccgaa ggtaactggc ttcagcagag
+     1441 cgcagatacc aaatactgtt cttctagtgt agccgtagtt aggccaccac ttcaagaact
+     1501 ctgtagcacc gcctacatac ctcgctctgc taatcctgtt accagtggct gctgccagtg
+     1561 gcgataagtc gtgtcttacc gggttggact caagacgata gttaccggat aaggcgcagc
+     1621 ggtcgggctg aacggggggt tcgtgcacac agcccagctt ggagcgaacg acctacaccg
+     1681 a
+//

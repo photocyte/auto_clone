@@ -1,41 +1,42 @@
-LOCUS       Exported                1658 bp ds-DNA     circular SYN 20-APR-2018
+LOCUS       Exported                1669 bp ds-DNA     circular SYN 20-APR-2018
 DEFINITION  .
 ACCESSION   <unknown
 VERSION     .
 KEYWORDS    .
 SOURCE      synthetic DNA construct
   ORGANISM  synthetic DNA construct
-REFERENCE   1  (bases 1 to 1658)
+REFERENCE   1  (bases 1 to 1669)
   AUTHORS   .
   TITLE     Direct Submission
   JOURNAL   Exported Apr 20, 2018 from SnapGene 4.1.8
             http://www.snapgene.com
 FEATURES             Location/Qualifiers
-     source          1..1658
+     source          1..1669
                      /organism="synthetic DNA construct"
                      /mol_type="other DNA"
+                     /note="color: #ffffff"
      protein_bind    complement(372..375)
                      /label=BsmBI
                      /label=BsmBI(1)
                      /note="color: #e72e00; direction: LEFT"
-     protein_bind    384..387
+     protein_bind    395..398
                      /label=BsmBI
                      /note="color: #00ff15"
-     misc_feature    complement(390..498)
+     misc_feature    complement(401..509)
                      /label=CamR Terminator
                      /note="color: #66ccff; direction: LEFT"
-     CDS             complement(499..1158)
+     CDS             complement(510..1169)
                      /label=CamR
                      /note="color: #0000ff; direction: LEFT"
-     promoter        complement(1159..1263)
+     promoter        complement(1170..1274)
                      /label=CamR Promoter
                      /note="color: #66ccff; direction: LEFT"
-     rep_origin      2222..270
+     rep_origin      1669..270
                      /direction=RIGHT
                      /label=ColE1/pMB1/pBR322
+                     /label=ColE1
                      /note="high-copy-number ColE1/pMB1/pBR322/pUC origin of 
                      replication"
-                     /label=ColE1
                      /note="color: #7f7f7f"
 ORIGIN
         1 acggggggtt cgtgcacaca gcccagcttg gagcgaacga cctacaccga actgagatac
@@ -44,26 +45,26 @@ ORIGIN
       181 tggtatcttt atagtcctgt cgggtttcgc cacctctgac ttgagcgtcg atttttgtga
       241 tgctcgtcag gggggcggag cctatggaaa aacgccagca acgcggcctt tttacggttc
       301 ctggcctttt gctggccttt tgctcacatg ttctttcctg cgttatcccc tgattctgtg
-      361 gataaccgta gtcggcNNNN NNtgaccaga ccaataaaaa acgcccggcg gcaaccgagc
-      421 gttctgaaca aatccagatg gagttctgag gtcattactg gatctatcaa caggagtcca
-      481 agcgagctcg atatcaaatt acgccccgcc ctgccactca tcgcagtact gttgtaattc
-      541 attaagcatt ctgccgacat ggaagccatc acaaacggca tgatgaacct gaatcgccag
-      601 cggcatcagc accttgtcgc cttgcgtata atatttgccc atggtgaaaa cgggggcgaa
-      661 gaagttgtcc atattggcca cgtttaaatc aaaactggtg aaactcaccc agggattggc
-      721 tgaaacgaaa aacatattct caataaaccc tttagggaaa taggccaggt tttcaccgta
-      781 acacgccaca tcttgcgaat atatgtgtag aaactgccgg aaatcgtcgt ggtattcact
-      841 ccagagcgat gaaaacgttt cagtttgctc atggaaaacg gtgtaacaag ggtgaacact
-      901 atcccatatc accagctcac cgtctttcat tgccatacga aattccggat gagcattcat
-      961 caggcgggca agaatgtgaa taaaggccgg ataaaacttg tgcttatttt tctttacggt
-     1021 ctttaaaaag gccgtaatat ccagctgaac ggtctggtta taggtacatt gagcaactga
-     1081 ctgaaatgcc tcaaaatgtt ctttacgatg ccattgggat atatcaacgg tggtatatcc
-     1141 agtgattttt ttctccattt tagcttcctt agctcctgaa aatctcgata actcaaaaaa
-     1201 tacgcccggt agtgatctta tttcattatg gtgaaagttg gaacctctta cgtgcccgat
-     1261 caatcatgac caaaatccct taacgtgagt tttcgttcca ctgagcgtca gaccccgtag
-     1321 aaaagatcaa aggatcttct tgagatcctt tttttctgcg cgtaatctgc tgcttgcaaa
-     1381 caaaaaaacc accgctacca gcggtggttt gtttgccgga tcaagagcta ccaactcttt
-     1441 ttccgaaggt aactggcttc agcagagcgc agataccaaa tactgttctt ctagtgtagc
-     1501 cgtagttagg ccaccacttc aagaactctg tagcaccgcc tacatacctc gctctgctaa
-     1561 tcctgttacc agtggctgct gccagtggcg ataagtcgtg tcttaccggg ttggactcaa
-     1621 gacgatagtt accggataag gcgcagcggt cgggctga
+      361 gataaccgta gtcggtctca tnnnnnnatc ctgagaccag accaataaaa aacgcccggc
+      421 ggcaaccgag cgttctgaac aaatccagat ggagttctga ggtcattact ggatctatca
+      481 acaggagtcc aagcgagctc gatatcaaat tacgccccgc cctgccactc atcgcagtac
+      541 tgttgtaatt cattaagcat tctgccgaca tggaagccat cacaaacggc atgatgaacc
+      601 tgaatcgcca gcggcatcag caccttgtcg ccttgcgtat aatatttgcc catggtgaaa
+      661 acgggggcga agaagttgtc catattggcc acgtttaaat caaaactggt gaaactcacc
+      721 cagggattgg ctgaaacgaa aaacatattc tcaataaacc ctttagggaa ataggccagg
+      781 ttttcaccgt aacacgccac atcttgcgaa tatatgtgta gaaactgccg gaaatcgtcg
+      841 tggtattcac tccagagcga tgaaaacgtt tcagtttgct catggaaaac ggtgtaacaa
+      901 gggtgaacac tatcccatat caccagctca ccgtctttca ttgccatacg aaattccgga
+      961 tgagcattca tcaggcgggc aagaatgtga ataaaggccg gataaaactt gtgcttattt
+     1021 ttctttacgg tctttaaaaa ggccgtaata tccagctgaa cggtctggtt ataggtacat
+     1081 tgagcaactg actgaaatgc ctcaaaatgt tctttacgat gccattggga tatatcaacg
+     1141 gtggtatatc cagtgatttt tttctccatt ttagcttcct tagctcctga aaatctcgat
+     1201 aactcaaaaa atacgcccgg tagtgatctt atttcattat ggtgaaagtt ggaacctctt
+     1261 acgtgcccga tcaatcatga ccaaaatccc ttaacgtgag ttttcgttcc actgagcgtc
+     1321 agaccccgta gaaaagatca aaggatcttc ttgagatcct ttttttctgc gcgtaatctg
+     1381 ctgcttgcaa acaaaaaaac caccgctacc agcggtggtt tgtttgccgg atcaagagct
+     1441 accaactctt tttccgaagg taactggctt cagcagagcg cagataccaa atactgttct
+     1501 tctagtgtag ccgtagttag gccaccactt caagaactct gtagcaccgc ctacatacct
+     1561 cgctctgcta atcctgttac cagtggctgc tgccagtggc gataagtcgt gtcttaccgg
+     1621 gttggactca agacgatagt taccggataa ggcgcagcgg tcgggctga
 //

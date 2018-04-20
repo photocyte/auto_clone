@@ -30,8 +30,11 @@ FEATURES             Location/Qualifiers
      promoter        complement(1159..1263)
                      /label=CamR Promoter
                      /note="color: #66ccff; direction: LEFT"
-     rep_origin      complement(1264..369)
-                     /direction=LEFT
+     rep_origin      2222..270
+                     /direction=RIGHT
+                     /label=ColE1/pMB1/pBR322
+                     /note="high-copy-number ColE1/pMB1/pBR322/pUC origin of 
+                     replication"
                      /label=ColE1
                      /note="color: #7f7f7f"
 ORIGIN

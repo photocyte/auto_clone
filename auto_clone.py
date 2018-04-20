@@ -194,7 +194,7 @@ class plasmid_object():
         else:
             my_label = record.id+" CDS "+str(len(record.seq))+"bp"
             
-        my_feature = Bio.SeqFeature.SeqFeature(my_feature_location,type=my_feature_type,strand=1,qualifiers={"label":my_label,"note":"color: #00ccff","codon_start":"1","transation":translation_seq})
+        my_feature = Bio.SeqFeature.SeqFeature(my_feature_location,type=my_feature_type,strand=1,qualifiers={"label":my_label,"note":"color: #00ccff","codon_start":"1","translation":translation_seq})
         
         record_reformatted.features.append(my_feature)
 

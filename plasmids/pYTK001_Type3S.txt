@@ -1,0 +1,3 @@
+ForwardOverlap:GCATCGTCTCATCGGTCTCAT
+ReverseOverlap:ATGCCGTCTCAGGTCTCAGGAT
+Comment:pYTK001_Type3S Golden gate primers :

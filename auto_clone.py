@@ -8,6 +8,7 @@ import Bio.Alphabet
 import time
 import os
 import datetime
+import collections
 
 class IDT_plate_object():
     def __init__(self,PrimerNamePrefix,PrimerIndex,StartWellPosition,direction,ignoreWellOverlap=True):
@@ -194,8 +195,9 @@ class plasmid_object():
         else:
             my_label = record.id+" CDS "+str(len(record.seq))+"bp"
             
-        my_feature = Bio.SeqFeature.SeqFeature(my_feature_location,type=my_feature_type,strand=1,qualifiers={"label":my_label,"note":"color: #00ccff","codon_start":"1","translation":translation_seq})
-        
+        feature_annotations = collections.OrderedDict()
+        feature_annotations = {"codon_start":"1","label":my_label,"note":"color: #00ccff","translation":translation_seq}
+        my_feature = Bio.SeqFeature.SeqFeature(my_feature_location,type=my_feature_type,strand=1,qualifiers=feature_annotations)
         record_reformatted.features.append(my_feature)
 
         complete_plasmid = self.forward_plasmid+record_reformatted+self.reverse_plasmid ##Concatenated records is as simple as addition. Thanks BioPython!
@@ -216,7 +218,7 @@ class plasmid_object():
         genbank_reference.authors = "."
         genbank_reference.title = "Direct Submission"
         genbank_reference_date_string = today.strftime("%b %d, %Y")
-        genbank_reference.journal = "Exported "+genbank_reference_date_string+" using auto_clone https://github.com/photocyte/auto_clone. Formatted for SnapGene 4.1.7 http://www.snapgene.com"
+        genbank_reference.journal = "Exported "+genbank_reference_date_string+" using auto_clone https://github.com/photocyte/auto_clone. Formatted for SnapGene 4.1.8\nhttp://www.snapgene.com"
         complete_plasmid.annotations["references"] = [genbank_reference]
         if plate != None:
             file_string = plate.WellPosition+"_"+record.id+"_"+self.forward_plasmid.id+".gb"

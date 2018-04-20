@@ -218,7 +218,9 @@ class plasmid_object():
         genbank_reference.authors = "."
         genbank_reference.title = "Direct Submission"
         genbank_reference_date_string = today.strftime("%b %d, %Y")
-        genbank_reference.journal = "Exported "+genbank_reference_date_string+" using auto_clone https://github.com/photocyte/auto_clone. Formatted for SnapGene 4.1.8\nhttp://www.snapgene.com"
+        ##Exported Apr 20, 2018 from SnapGene 4.1.8
+        genbank_reference.journal="Exported "+genbank_reference_date_string+" from SnapGene 4.1.8 <- String to trick SnapGene, actually exported with auto_clone https://github.com/photocyte/auto_clone"
+        ##genbank_reference.journal = "Exported "+genbank_reference_date_string+" using auto_clone https://github.com/photocyte/auto_clone. Formatted for SnapGene 4.1.8\nhttp://www.snapgene.com"
         complete_plasmid.annotations["references"] = [genbank_reference]
         if plate != None:
             file_string = plate.WellPosition+"_"+record.id+"_"+self.forward_plasmid.id+".gb"

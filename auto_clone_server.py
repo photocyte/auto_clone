@@ -99,6 +99,12 @@ class Upload(tornado.web.RequestHandler):
         self.write("<br>Ordering gibson primers for plasmid: "+plasmid_name)
         self.write("<br>IDT format is: "+IDT_format)
 
+        for r in record_iterator:
+            if "CGTCTC" in str(r.seq).upper() or "GAGACG" in str(r.seq).upper():
+                self.write('<p style="color:red;"><b>Warning! CDS:'+r.id+' has a internal BsmBI site</b></p>')
+            if "GGTCTC" in str(r.seq).upper() or "GAGACC" in str(r.seq).upper():
+                self.write('<p style="color:red;"><b>Warning! CDS:'+r.id+' has a internal BsaI site</b></p>')
+
         os.chdir(tmp_dir_name)
         if IDT_format == "plate":
             auto_clone.plate_vertical_primer_order_fasta(record_iterator,plasmid_name,primer_prefix,primer_index,starting_well)

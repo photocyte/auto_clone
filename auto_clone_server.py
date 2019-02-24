@@ -101,7 +101,7 @@ class Upload(tornado.web.RequestHandler):
 
         for r in record_iterator:
             if "CGTCTC" in str(r.seq).upper() or "GAGACG" in str(r.seq).upper():
-                self.write('<p style="color:red;"><b>Warning! CDS:'+r.id+' has a internal BsmBI site</b></p>')
+                self.write('<p style="color:red;"><b>Warning! CDS:'+r.id+' has a internal BsmBI/Esp3I site</b></p>')
             if "GGTCTC" in str(r.seq).upper() or "GAGACC" in str(r.seq).upper():
                 self.write('<p style="color:red;"><b>Warning! CDS:'+r.id+' has a internal BsaI site</b></p>')
 

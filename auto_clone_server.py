@@ -100,10 +100,15 @@ class Upload(tornado.web.RequestHandler):
         self.write("<br>IDT format is: "+IDT_format)
 
         for r in record_iterator:
+            siteFound = False
             if "CGTCTC" in str(r.seq).upper() or "GAGACG" in str(r.seq).upper():
-                self.write('<p style="color:red;"><b>Warning! CDS:'+r.id+' has a internal BsmBI/Esp3I site</b></p>')
+                self.write('<p style="color:red;"><b>Warning! CDS:'+r.id+' has an internal BsmBI/Esp3I site</b></p>')
+                siteFound = True
             if "GGTCTC" in str(r.seq).upper() or "GAGACC" in str(r.seq).upper():
-                self.write('<p style="color:red;"><b>Warning! CDS:'+r.id+' has a internal BsaI site</b></p>')
+                self.write('<p style="color:red;"><b>Warning! CDS:'+r.id+' has an internal BsaI site</b></p>')
+                siteFound = True
+            if siteFound == True:
+                self.write('<b>Recommend site directed mutagenesis of site(s) if CDSs are intended for downstream Golden Gate cloning</b></p>')
 
         os.chdir(tmp_dir_name)
         if IDT_format == "plate":
